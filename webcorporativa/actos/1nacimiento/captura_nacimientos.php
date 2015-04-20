@@ -1,6 +1,6 @@
 <?php
 /* 
-    Author: Brenda Ortiz
+    Author: Brenda 
 */
 
 #Catalogos

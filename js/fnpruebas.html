@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="fnpruebas.js"></script>
+        <script type="text/javascript" src="jquery-1.11.2.min.js"></script>
+        <script type="text/javascript" src="jquery-ui.min.js"></script>
+        <link type="text/css" rel="stylesheet" href="../css/jquery-ui-1.11.3.custom/jquery-ui.css" media="screen">
+        <script>
+            $(document).ready(function () {
+                $.fn.extend({
+                    f1: function () {
+                        $("<div/>").dialog({
+                            title: "DIALOG",
+                            close: function () {
+                                
+                                $(this).destroy();
+                            }
+                        }).html("HOLA");
+
+                        $.fn.namesss = function () {
+                            alert("asd");
+                        };
+                    },
+                    f2: function () {
+                        $("#div").toggle();
+                    }
+                });
+
+
+                $("#btn1").click(function () {
+                    $(this).f2();
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <button id="btn1" type="button">hola</button>
+        
+        <div id="div" style="display: none">
+            
+
+This property can be useful for profiling event performance by getting the event.timeStamp value at two points in the code and noting the difference. To simply determine the current time inside an event handler, use (new Date).getTime() instead.
+
+Note: Due to a bug open since 2004, this value is not populated correctly in Firefox and it is not possible to know the time the event was created in that browser.
+
+        </div>
+    </body>
+</html>

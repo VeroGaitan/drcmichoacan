@@ -83,7 +83,7 @@ else if($action=="4"){//GUARDA LOS DATOS DE LAS DEFUNCIONES.
                             trim(filter_input(INPUT_POST,'nacionalidad_madre')),
                             trim(filter_input(INPUT_POST,'fechaDefuncion')),
                             trim(filter_input(INPUT_POST,'hrDefuncion')),
-                            trim(filter_input(INPUT_POST,'minDefuncion')),
+                            //trim(filter_input(INPUT_POST,'minDefuncion')),
                             trim(filter_input(INPUT_POST,'causa')),
                             trim(filter_input(INPUT_POST,'lugar')),
                             trim(filter_input(INPUT_POST,'noCertificado')),

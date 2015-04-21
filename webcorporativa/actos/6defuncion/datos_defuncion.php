@@ -67,13 +67,16 @@ class datos_defuncion extends  conexionmysqli{
     
     public function insertar_defunciones($libro,$cuadernillo, $tomo, $tomoBis, $oficialia, $noActa, $actaBis,$anoReg, $estadoReg, $municipioReg, $cadena, $fechaReg, $crip, $curp, $nombres, $primer_apellido, $segundo_apellido, $idSexo, $fechaNac, $edad, $tiempoEdad,$otraEdad, $idPais, $idEstado, $desEstado, $idMunicipio, $desMunicipio, $idLocalidad, $desLocalidad, $edo_civil_difunto, $nacionalidad_difunto, 
             $nombres_conyugue, $primer_apellido_conyugue, $segundo_apellido_conyugue, $finadoCony, $nacionalidad_conyugue, $nombres_padre, $primer_apellido_padre, $segundo_apellido_padre, $finadoPadre, $nacionalidad_padre, $nombres_madre, $primer_apellido_madre, $segundo_apellido_madre, $finadoMadre, $nacionalidad_madre, 
-            $fechaDefuncion, $hrDefuncion, $minDefuncion, $causa, $lugar, $noCertificado, $nombre_medico, $cedula, $nota_acta, $notaMarginal, $estado_certificado){
+            $fechaDefuncion, $hrDefuncion, $causa, $lugar, $noCertificado, $nombre_medico, $cedula, $nota_acta, $notaMarginal, $estado_certificado){
     
         if($nombre_medico=='')$nombre_medico='==';
+        if($edad=='')$edad='0';
+        if($idMunicipio=='')$idMunicipio='0';
+        if($idLocalidad=='')$idLocalidad='0';
         
     $sqlInsert = "CALL inserta_defunciones('$libro','$cuadernillo','$tomo', '$tomoBis', '$oficialia', '$noActa', '$actaBis','$anoReg',' $estadoReg',' $municipioReg',' $cadena','$fechaReg', '$crip', '$curp', '$nombres', '$primer_apellido', '$segundo_apellido', '$idSexo', '$fechaNac', '$edad', '$tiempoEdad','$otraEdad', '$idPais', '$idEstado', '$desEstado', '$idMunicipio', '$desMunicipio', '$idLocalidad', '$desLocalidad', '$edo_civil_difunto', '$nacionalidad_difunto', 
             '$nombres_conyugue', '$primer_apellido_conyugue', '$segundo_apellido_conyugue', '$finadoCony', '$nacionalidad_conyugue', '$nombres_padre', '$primer_apellido_padre', '$segundo_apellido_padre', '$finadoPadre', '$nacionalidad_padre', '$nombres_madre', '$primer_apellido_madre', '$segundo_apellido_madre', '$finadoMadre', '$nacionalidad_madre', 
-            '$fechaDefuncion', '$hrDefuncion', '$minDefuncion', '$causa', '$lugar', '$noCertificado', '$nombre_medico', '$cedula', '$nota_acta', '$notaMarginal', '$estado_certificado')";
+            '$fechaDefuncion', '$hrDefuncion', '$causa', '$lugar', '$noCertificado', '$nombre_medico', '$cedula', '$nota_acta', '$notaMarginal', '$estado_certificado')";
     
         if ($this->query($sqlInsert)) {
             echo "Registro Guardado Exitosamente!!!";
@@ -83,7 +86,10 @@ class datos_defuncion extends  conexionmysqli{
     }
    public function insertar_defunciones_ins($libro, $tomo, $tomoBis, $oficialia, $noActa,$actaBis, $anoReg, $estadoReg, $municipioReg, $cadena, $fechaReg, $nombres, $primer_apellido, $segundo_apellido, $idSexo, $fechaNac, $edad, $tiempoEdad,$otraEdad, $idPais, 
             $fechaDefuncion, $compareciente, $transcripcion, $notas, $notaMarginal,$estado_certificado){
-
+    if($edad=='')$edad='0';
+    if($idMunicipio=='')$idMunicipio='0';
+    if($idLocalidad=='')$idLocalidad='0';
+    
     $sqlInsert = "CALL inserta_defunciones_ins('$libro','$tomo', '$tomoBis','$oficialia', '$noActa', '$actaBis','$anoReg','$estadoReg', '$municipioReg', '$cadena','$fechaReg', '$nombres', '$primer_apellido', '$segundo_apellido', '$idSexo', '$fechaNac', '$edad', '$tiempoEdad', '$otraEdad ','$idPais', 
             '$fechaDefuncion','$compareciente', '$transcripcion', '$notas',' $notaMarginal','$estado_certificado')";
     

@@ -30,7 +30,7 @@ $cat_edoCertificacion = $defuncion->cat_edos_cert();
         <script type="text/javascript" src="../../../js/combobox-autocomplete.jquery.js"></script>
         <link type="text/css" rel="stylesheet" href="../../../css/combobox-autocomplete.jquery.css" media="screen"> 
         <script type="text/javascript" src="../../../js/capturaActas.js"></script>
-<!--        <link type="text/css" rel="stylesheet" href="../../../css/datepicker.css" media="screen"> -->
+        <link type="text/css" rel="stylesheet" href="../../../css/forms.css" media="screen"> 
         
         <script type="text/javascript">
         //Función que permite solo Números        
@@ -43,12 +43,12 @@ $cat_edoCertificacion = $defuncion->cat_edos_cert();
           event.returnValue = false;
         } 
         
-    function validarSoloNumeros(e) { // 1
-        tecla = (document.all) ? e.keyCode : e.which; // 2
-        if (tecla===8) return true; // 3
-        patron = /\d/;  // 4
-        te = String.fromCharCode(tecla); // 5
-        return patron.test(te); // 6
+    function validarSoloNumeros(e) { 
+        tecla = (document.all) ? e.keyCode : e.which; 
+        if (tecla===8) return true; //Tab 
+        patron = /\d/; 
+        te = String.fromCharCode(tecla); 
+        return patron.test(te); 
     }
     
         function soloLetras(e){
@@ -70,24 +70,24 @@ $cat_edoCertificacion = $defuncion->cat_edos_cert();
              }
         }
 
-        function validaHoras() {
-            var hrDefuncion = document.getElementById("hrDefuncion");
-            var minDefuncion = document.getElementById("minDefuncion");
-            if(parseInt(minDefuncion.value) > 59) {
-                minDefuncion.style.border = "2px solid red";
-                return false;
-            }  else if(parseInt(hrDefuncion.value) > 24) {
-                hrDefuncion.style.border = "2px solid red";
-                return false;
-            }   else if(parseInt(hrDefuncion.value) === 24 && parseInt(minDefuncion.value)> 0) {
-                minDefuncion.style.border = "2px solid red";
-                return false;
-            }  else if(parseInt(minDefuncion.value) <= 59) {
-                minDefuncion.style.border = "";
-            } else if(parseInt(hrDefuncion.value) <= 24) {
-                hrDefuncion.style.border = "";
-            }
-        }
+//        function validaHoras() {
+//            var hrDefuncion = document.getElementById("hrDefuncion");
+//            var minDefuncion = document.getElementById("minDefuncion");
+//            if(parseInt(minDefuncion.value) > 59) {
+//                minDefuncion.style.border = "2px solid red";
+//                return false;
+//            }  else if(parseInt(hrDefuncion.value) > 24) {
+//                hrDefuncion.style.border = "2px solid red";
+//                return false;
+//            }   else if(parseInt(hrDefuncion.value) === 24 && parseInt(minDefuncion.value)> 0) {
+//                minDefuncion.style.border = "2px solid red";
+//                return false;
+//            }  else if(parseInt(minDefuncion.value) <= 59) {
+//                minDefuncion.style.border = "";
+//            } else if(parseInt(hrDefuncion.value) <= 24) {
+//                hrDefuncion.style.border = "";
+//            }
+//        }
         function enviarApellidosP() {
             var primer_apellido = document.getElementById("primer_apellido").value;
             document.getElementById("primer_apellido_padre").value = primer_apellido;
@@ -331,9 +331,6 @@ $cat_edoCertificacion = $defuncion->cat_edos_cert();
                 <tr>
                             <td> </td>
                             <td> </td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
                             <td align="right">
                              <button type="button" id="buscar" class="btn btn-info btn-lg">
                                 <span class="glyphicon glyphicon-search"></span> Buscar
@@ -341,16 +338,11 @@ $cat_edoCertificacion = $defuncion->cat_edos_cert();
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                <label>Curp</label><br>
-                            </td>
-                            <td>
+                             <td>
                                 <input id="curp" type="text" class="form-control" maxlength="16" style="text-transform:uppercase;"  onkeyup="javascript:this.value=this.value.toUpperCase();">                                
+                                <div class="labelForm">Curp</div>
                             </td>
-                            <td>
-                                <label>Sexo</label><br>
-                            </td>
-                            <td>
+                              <td>
                            <div  class="ui-widget">
                             <select style="width: 200px" id="ID_SEXO"  onkeypress="return soloLetras(event)" style="text-transform:uppercase;">
                                   <option value="0">========</option>
@@ -362,34 +354,30 @@ $cat_edoCertificacion = $defuncion->cat_edos_cert();
                                   }
                                   ?>
                             </select>
-                            </div>                                  
+                            </div> 
+                                <div class="labelForm">Sexo</div>
                             </td>
                             <td><input id="popupAviso" type="checkbox"> <label>Aviso Sindico o MP</label><br> </td>
                             <td> </td>
                         </tr>
                         <tr>
                             <td>
-                                <label>Nombre(s)*</label><br>
-                            </td>
-                            <td>
                             <input id="nombres" type="text" class="form-control" onkeypress="return soloLetras(event)"  onkeyup="javascript:this.value=this.value.toUpperCase();" style="text-transform:uppercase;">                                
+                            <div class="labelForm"><strong>*</strong>Nombre(s)</div>
                             </td>
-                            <td> <label>Primer apellido*</label><br> </td>
                             <td><input id="primer_apellido" type="text" class="form-control"  onkeypress="return soloLetras(event)" style="text-transform:uppercase;"  onkeyup="javascript:this.value=this.value.toUpperCase();" onblur="enviarApellidosP()">                                
-                             </td>
-                            <td><label>Segundo apellido</label><br> </td>
+                                <div class="labelForm"><strong>*</strong>Primer apellido</div>
+                            </td>
                             <td><input id="segundo_apellido" type="text" class="form-control"  onkeypress="return soloLetras(event)" style="text-transform:uppercase;"  onkeyup="javascript:this.value=this.value.toUpperCase();"  onblur="enviarApellidosM()">                                
+                                <div class="labelForm">Segundo apellido</div>
                             </td>
                         </tr>                        
                         <tr>
                             <td>
-                                <label>Fecha de Nacimiento*</label><br>
-                            </td>
-                            <td>
                                 <input id="fechaNac" onblur="validarFechas(this.value, 'fechaNac')" onKeyUp = "this.value=formateafecha(this.value, 'fechaNac');" class="form-control" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01])/(0[1-9]|1[012])/[0-9]{4}" placeholder="DD/MM/YYYY" type="text">                                 
-                            </td>
-                            <td><label>Edad*</label><br> </td>
-                            <td align="center">
+                                <div class="labelForm"><strong>*</strong>Fecha de Nacimiento</div>
+                            </td>                            
+                            <td>
                                  <div  class="ui-widget">
                             <input id="edad" maxlength="3" type="text" size="5" onkeypress="return validarSoloNumeros(event)">
                                                           
@@ -403,20 +391,19 @@ $cat_edoCertificacion = $defuncion->cat_edos_cert();
                               <option value="Segundos">Segundos</option>
                             </select>
                             </div>
+                                <div class="labelForm"><strong>*</strong>Edad</div>
                          </td>
-                         <td align="center"> <input id="masEdad" type="checkbox" onchange="mostrarMasEdad()"> Otra</td>
-                         <td><input id="otraEdad" style="display: none; text-transform:uppercase;"  onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control"> </td>
+                         <td> <input id="masEdad" type="checkbox" onchange="mostrarMasEdad()"> Otra
+                         <input id="otraEdad" style="display: none; text-transform:uppercase;"  onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control"> 
+                         </td>                         
                     </tr>                                              
               </table>          
     
 <!--**************************************DATOS DE NACIMIENTO***************************************************-->  
     <h4 align="center" style="background-color:#CCCCCC"><strong>Datos de Nacimiento</strong></h4> 
                 <table class="table table-condensed" border="0" align="center" >
-                    <tr>
-                            <td>          
-                                <label>Pa&Iacute;s*</label><br>
-                            </td>
-                            <td>
+                    <tr>  
+                        <td>
                             <div>
                                 <label id="errorPais" style="color: #FF0000"></label>
                                 <select style="width: 200px" id="ID_PAIS_REG" class="ID_PAIS_REG">
@@ -430,9 +417,9 @@ $cat_edoCertificacion = $defuncion->cat_edos_cert();
                                     ?>
                                   <option value="00">OTRO</option>
                                </select>
-                            </div>                               
+                            </div> 
+                                <div class="labelForm"><strong>*</strong>Pa&Iacute;s</div>
                             </td>
-                            <td>  <label>Nacionalidad*</label><br> </td>
                             <td> 
                                 <div  class="ui-widget">
                                     <label id="errorNac" style="color: #FF0000"></label>                              
@@ -446,15 +433,13 @@ $cat_edoCertificacion = $defuncion->cat_edos_cert();
                                       }
                                       ?>
                                 </select>
-                        </div>  
+                        </div> 
+                                <div class="labelForm"><strong>*</strong>Nacionalidad</div>
                       </td>
                             <td> </td>
                             <td> </td>
                         </tr>
                         <tr>
-                            <td>
-                                <label>Estado*</label><br>
-                            </td>
                             <td>
                                <div  class="ui-widget">
                                 <select style="width: 200px" id="ID_ESTADO" class="ID_ESTADO"></select>
@@ -462,18 +447,19 @@ $cat_edoCertificacion = $defuncion->cat_edos_cert();
                                 <label>Otra Entidad</label><br>
                                 <input id="ESTADO_NACIMIENTO_OCULTO" style="width: 200px" type="text" class="validaLetras" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                                 </div>
-                                </div>                                
+                                </div> 
+                               <div class="labelForm"><strong>*</strong>Estado</div>
                             </td>
-                            <td>  <label>Municipio</label><br> </td>
-                            <td>  <div  class="ui-widget">
+                            <td>  
+                                <div  class="ui-widget">
                                 <select style="width: 200px" id="ID_MUNICIPIO" class="ID_MUNICIPIO"></select>
                                 <div id="ID_MUNICIPIO_OCULTO" style="display: none;"><br>
                                 <label>Otro Municipio</label><br>
                                 <input id="MUNICIPIO_NACIMIENTO_OCULTO" style="width: 200px" type="text" class="validaLetras" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                                 </div>
                                 </div> 
+                              <div class="labelForm">Municipio</div>
                             </td>
-                            <td> <label>Localidad</label><br></td>
                             <td> <div  class="ui-widget">
                                 <select style="width: 200px" id="ID_LOCALIDAD" class="ID_LOCALIDAD"></select>
                                 <div id="ID_LOCALIDAD_OCULTO" style="display: none;"><br>
@@ -481,11 +467,7 @@ $cat_edoCertificacion = $defuncion->cat_edos_cert();
                                 <input id="LOCALIDAD_NACIMIENTO_OCULTO"style="width: 200px" type="text" class="validaLetras" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                                 </div>
                                 </div>
-                            </td>
-                        </tr>                        
-                         <tr>
-                            <td>
-                                <label>Estado Civil*</label><br>
+                                <div class="labelForm">Localidad</div>
                             </td>
                             <td>
                             <select style="width: 200px" id="edo_civil_difunto" class="form-control">
@@ -497,57 +479,45 @@ $cat_edoCertificacion = $defuncion->cat_edos_cert();
                                 <?php
                                 }
                                 ?>
-                           </select>                                
+                           </select>  
+                                <div class="labelForm"><strong>*</strong>Estado Civil</div>
                             </td>
-                            <td> </td>
-                            <td>  </td>
-                            <td> </td>
-                            <td>  </td>
-                        </tr>  
+                        </tr> 
                 </table> 
 <!--**************************************DATOS DEL CÓNYUGUE***************************************************-->  
     <h4 align="center" style="background-color:#CCCCCC"><strong>Datos del Cónyugue</strong></h4> 
                 <table class="table table-condensed" border="0" align="center" >
                         <tr>
-                            <td>
-                                <label>Nombre(s)*</label><br>
-                            </td>
-                            <td>
+                             <td>
                                <input id="nombres_conyugue" type="text" class="form-control"  onkeypress="return soloLetras(event)" style="text-transform:uppercase;"  onkeyup="javascript:this.value=this.value.toUpperCase();">                                
-                            </td>
-                            <td>
-                                <label>Primer apellido*</label><br>
+                               <div class="labelForm"><strong>*</strong>Nombre(s)</div>
                             </td>
                             <td>
                              <input id="primer_apellido_conyugue" type="text" class="form-control"  onkeypress="return soloLetras(event)" style="text-transform:uppercase;"  onkeyup="javascript:this.value=this.value.toUpperCase();">                                
+                             <div class="labelForm"><strong>*</strong>Primer apellido</div>
                             </td>
-                            <td>
-                                <label>Segundo apellido</label><br>
-                            </td>
-                            <td>
+                             <td>
                             <input id="segundo_apellido_conyugue" type="text" class="form-control"  onkeypress="return soloLetras(event)" style="text-transform:uppercase;"  onkeyup="javascript:this.value=this.value.toUpperCase();">                                
+                            <div class="labelForm">Segundo apellido</div>
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                <label>Nacionalidad</label><br>
-                            </td>
-                            <td>
+                              <td>
                                <div  class="ui-widget">
-                  <select style="width: 200px" id="nacionalidad_conyugue" class="form-control">
-                        <option value="0">========</option>
-                        <?php
-                        foreach ($cat_paises as $item) {
-                            ?>
-                          <option value="<?php echo $item['0'] ?>" <?php if($item[0]=='223') echo "selected"; ?>><?php echo $item[9]; ?></option>
-                            <?php
-                        }
-                        ?>
-                  </select>
-                  </div>                            
+                                <select style="width: 200px" id="nacionalidad_conyugue" class="form-control">
+                                      <option value="0">========</option>
+                                      <?php
+                                      foreach ($cat_paises as $item) {
+                                          ?>
+                                        <option value="<?php echo $item['0'] ?>" <?php if($item[0]=='223') echo "selected"; ?>><?php echo $item[9]; ?></option>
+                                          <?php
+                                      }
+                                      ?>
+                                </select>
+                               </div> 
+                                <div class="labelForm">Nacionalidad</div>
                              </td>
-                           <td align="right"> Finado </td>
-                            <td align="left"> <input id="finadoCony" type="checkbox"> </td>
+                            <td> <input id="finadoCony" type="checkbox"> Finado</td>
                         </tr>
                 </table> 
  
@@ -555,45 +525,36 @@ $cat_edoCertificacion = $defuncion->cat_edos_cert();
     <h4 align="center" style="background-color:#CCCCCC"><strong>Datos del Padre</strong></h4> 
                 <table class="table table-condensed" border="0" align="center" >
                         <tr>
-                            <td>
-                                <label>Nombre(s)*</label><br>
-                            </td>
-                            <td>
+                             <td>
                               <input id="nombres_padre" type="text" class="form-control"  onkeypress="return soloLetras(event)" style="text-transform:uppercase;"  onkeyup="javascript:this.value=this.value.toUpperCase();">                                
-                            </td>
-                            <td>
-                                <label>Primer apellido*</label><br>
+                              <div class="labelForm"><strong>*</strong>Nombre(s)</div>
                             </td>
                             <td>
                                 <input id="primer_apellido_padre" type="text" class="form-control"  onkeypress="return soloLetras(event)" style="text-transform:uppercase;"  onkeyup="javascript:this.value=this.value.toUpperCase();" onblur="validarApPadre()">                                
+                                <div class="labelForm"><strong>*</strong>Primer apellido</div>
                             </td> 
-                            <td>
-                                <label>Segundo apellido</label><br>
-                            </td>
-                            <td>
+                             <td>
                                 <input id="segundo_apellido_padre" type="text" class="form-control"  onkeypress="return soloLetras(event)" style="text-transform:uppercase;"  onkeyup="javascript:this.value=this.value.toUpperCase();">                                
+                                <div class="labelForm">Segundo apellido</div>
                             </td>
                         </tr>                        
                          <tr>
-                            <td>
-                                <label>Nacionalidad</label><br>
-                            </td>
-                            <td>
+                             <td>
                                <div  class="ui-widget">
-                  <select style="width: 200px" id="nacionalidad_padre" class="form-control">
-                        <option value="0">========</option>
-                        <?php
-                        foreach ($cat_paises as $item) {
-                            ?>
-                          <option value="<?php echo $item['0'] ?>" <?php if($item[0]=='223') echo "selected"; ?>><?php echo $item[9]; ?></option>
-                            <?php
-                        }
-                        ?>
-                  </select>
-                  </div>                              
+                                <select style="width: 200px" id="nacionalidad_padre" class="form-control">
+                                      <option value="0">========</option>
+                                      <?php
+                                      foreach ($cat_paises as $item) {
+                                          ?>
+                                        <option value="<?php echo $item['0'] ?>" <?php if($item[0]=='223') echo "selected"; ?>><?php echo $item[9]; ?></option>
+                                          <?php
+                                      }
+                                      ?>
+                                </select>
+                             </div> 
+                                <div class="labelForm">Nacionalidad</div>
                              </td>
-                            <td align="right"> Finado </td>
-                            <td align="left"> <input id="finadoPadre" type="checkbox"> </td>
+                            <td> <input id="finadoPadre" type="checkbox"> Finado</td>
                         </tr>
                 </table>
  
@@ -601,40 +562,34 @@ $cat_edoCertificacion = $defuncion->cat_edos_cert();
     <h4 align="center" style="background-color:#CCCCCC"><strong>Datos de la Madre</strong></h4> 
                 <table class="table table-condensed" border="0" align="center" >
                         <tr>
-                            <td>
-                                <label>Nombre(s)*</label><br>
-                            </td>
-                            <td>
+                           <td>
                                <input id="nombres_madre" type="text" class="form-control"  onkeypress="return soloLetras(event)" style="text-transform:uppercase;"  onkeyup="javascript:this.value=this.value.toUpperCase();">                                
+                               <div class="labelForm"><strong>*</strong>Nombre(s)</div>
                             </td>
-                            <td><label>Primer apellido*</label><br>  </td>
                             <td><input id="primer_apellido_madre" type="text" class="form-control"  onkeypress="return soloLetras(event)" style="text-transform:uppercase;"  onkeyup="javascript:this.value=this.value.toUpperCase();"  onblur="validarApMadre()">                                
-                              </td>
-                            <td><label>Segundo apellido</label><br>  </td>
+                            <div class="labelForm"><strong>*</strong>Primer apellido</div>  
+                            </td>
                             <td> <input id="segundo_apellido_madre" type="text" class="form-control"  onkeypress="return soloLetras(event)" style="text-transform:uppercase;"  onkeyup="javascript:this.value=this.value.toUpperCase();">                                
+                                 <div class="labelForm">Segundo apellido</div>
                             </td>
-                        </tr>                       
-                        
+                        </tr> 
                          <tr>
-                            <td>
-                                <label>Nacionalidad</label><br>
-                            </td>
-                            <td>
-                 <div  class="ui-widget">
-                        <select style="width: 200px" id="nacionalidad_madre" class="form-control">
-                            <option value="0">========</option>
-                            <?php
-                            foreach ($cat_paises as $item) {
-                                ?>
-                              <option value="<?php echo $item['0'] ?>" <?php if($item[0]=='223') echo "selected"; ?>><?php echo $item[9]; ?></option>
-                                <?php
-                                }
-                                ?>
-                  </select>
-                  </div>                               
+                             <td>
+                                <div  class="ui-widget">
+                                       <select style="width: 200px" id="nacionalidad_madre" class="form-control">
+                                           <option value="0">========</option>
+                                           <?php
+                                           foreach ($cat_paises as $item) {
+                                               ?>
+                                             <option value="<?php echo $item['0'] ?>" <?php if($item[0]=='223') echo "selected"; ?>><?php echo $item[9]; ?></option>
+                                               <?php
+                                               }
+                                               ?>
+                                 </select>
+                                 </div>
+                                <div class="labelForm">Nacionalidad</div>
                              </td>
-                            <td align="right"> Finado </td>
-                            <td align="left"> <input id="finadoMadre" type="checkbox"> </td>
+                            <td> <input id="finadoMadre" type="checkbox"> Finado</td>
                         </tr>
                 </table>  
                 
@@ -642,84 +597,62 @@ $cat_edoCertificacion = $defuncion->cat_edos_cert();
     <h4 align="center" style="background-color:#CCCCCC"><strong>Datos de la Defunción</strong></h4> 
                 <table class="table table-condensed" border="0" align="center" >
                         <tr>
-                            <td width="30%">
-                                <label>Fecha*</label><br>
-                            </td>
-                            <td width="30%">
+                            <td>
                                 <input id="fechaDefuncion" onblur="validarFechas(this.value, 'fechaDefuncion')" onKeyUp = "this.value=formateafecha(this.value, 'fechaDefuncion');" class="form-control" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01])/(0[1-9]|1[012])/[0-9]{4}" placeholder="DD/MM/YYYY" type="text">
-                              </td>
-                            <td align="right"> 
-                                <label>Hora</label><br>
+                                <div class="labelForm"><strong>*</strong>Fecha</div>  
                             </td>
-                            <td width="20%">
-                               <div class="input-group">
-                                   <input id="hrDefuncion" type="text" class="col-xs-3" maxlength="2" onkeypress="return validarSoloNumeros(event)" onblur="validaHoras()">
+                              <td>
+                           <div class="input-group">
+                               <!--     <input id="hrDefuncion" type="text" class="col-xs-3" maxlength="2" onkeypress="return validarSoloNumeros(event)" onblur="validaHoras()">
                                 <strong><input value=":" disabled="true" type="text" class="col-xs-2" style="border: #ffffff"></strong>
                                 <input id="minDefuncion" type="text" class="col-xs-3" maxlength="2" onkeypress="return validarSoloNumeros(event)" onblur="validaHoras()"> 
-<!--                            <input style="width: 70px"  id="HORA_NACIMIENTO" placeholder="HH:MM" name="hora" type="text" maxlength="5" class="validaNumeros" onKeyUp = "this.value=validarHora(this.value);">  -->
-                               </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>Causa*</label><br>
-                            </td>
-                            <td colspan="3">
-                                <input id="causa" type="text" class="form-control" style="text-transform:uppercase;"  onkeyup="javascript:this.value=this.value.toUpperCase();">                                
-                            </td>  
-                            <td> </td>  
-                            <td> </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>Lugar*</label><br>
+                               -->
+                               <input style="width: 70px"  id="hrDefuncion" placeholder="HH:MM" name="hora" type="text" maxlength="5" class="validaNumeros" onKeyUp = "this.value=validarHora(this.value);">  
+                            </div>
+                                <div class="labelForm">Hora</div>
                             </td>
                             <td>
                                 <input id="lugar" type="text" class="form-control" style="text-transform:uppercase;"  onkeyup="javascript:this.value=this.value.toUpperCase();">                                
+                                <div class="labelForm"><strong>*</strong>Lugar</div> 
                             </td>
-                            <td align="right"><label>Certificado No.*</label><br>  </td>
-                            <td align="left"><input id="noCertificado" type="text" class="form-control" onkeypress="return validarSoloNumeros(event)">                                
-                           </td>
-                        </tr>                         
+                        </tr>
                         <tr>
-                            <td>
-                                <label>Nombre del médico que certifico la defunción*</label><br>
-                            </td>
-                            <td>
+                             <td colspan="3">
+                                <input id="causa" type="text" class="form-control" style="text-transform:uppercase;"  onkeyup="javascript:this.value=this.value.toUpperCase();">                                
+                                <div class="labelForm"><strong>*</strong>Causa</div>  
+                            </td> 
+                        </tr>                                                
+                        <tr>
+                              <td>
                               <input id="nombre_medico" type="text" class="form-control"  onkeypress="return soloLetras(event)" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">                                
+                              <div class="labelForm"><strong>*</strong>Nombre del médico que certifico la defunción</div> 
                             </td>
-                            <td>
-                                <label>No. de cédula profesional*</label><br>
+                            <td><input id="noCertificado" type="text" class="form-control" onkeypress="return validarSoloNumeros(event)">                                
+                                <div class="labelForm"><strong>*</strong>No. Certificado</div> 
                             </td>
-                            <td>
+                             <td>
                               <input id="cedula" type="text" class="form-control" onkeypress="return validarSoloNumeros(event)">                            
-                             </td>
+                              <div class="labelForm"><strong>*</strong>No. de cédula profesional</div>  
+                            </td>
                         </tr>                         
                 </table>
 <!--**************************************NOTA DEL ACTA***************************************************-->   
     <h4 align="center" style="background-color:#CCCCCC"><strong>Anotaciones</strong></h4> 
                <table class="table table-condensed" border="0" align="center">
                         <tr>
-                            <td width="15%">
-                                <label>Notas del Acta (MAX 255 caracteres)</label><br>
-                            </td>
                             <td>
                                 <textarea maxlength="255" class="form-control" rows="2" cols="100" id="nota_acta"  style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
+                                <div class="labelForm">Notas del Acta (MAX 255 caracteres)</div>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <label>Anotaciones Marginales</label><br>
-                            </td>
-                            <td>
                                 <textarea class="form-control" rows="2" cols="100" id="notaMarginal"  style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
+                                <div class="labelForm">Anotaciones Marginales</div>
                             </td>
                         </tr>
                         <tr>
                           <td>
-                               <label>Estado de la Certificación</label><br>                                
-                            </td>  
-                           <td>
                                <div  class="ui-widget">
                                <select style="width: 200px" id="estado_certificado">
                                     <?php
@@ -730,17 +663,15 @@ $cat_edoCertificacion = $defuncion->cat_edos_cert();
                                         }
                                         ?>
                                 </select>
-                               </div>  
+                               </div> 
+                               <div class="labelForm">Estado de la Certificación</div> 
                             </td>                            
                       </tr>
                         <tr>
-                            <td colspan="2" align="center">
-                                <button type="submit" id="grabar_defuncion" class="btn btn-success btn-lg">
-                                  <span class="glyphicon glyphicon-ok"></span> Grabar
-                               </button>
-                                <button type="button" id="cancelar" class="btn btn-danger btn-lg">
-                                   <span class="glyphicon glyphicon-remove"></span> Cancelar
-                                </button>
+                            <td colspan="6" align="right"><br> 
+                               <button type="button" id="grabar_defuncion" class="btn btn-primary">
+                                  <span class="glyphicon glyphicon-floppy-open"></span> Grabar
+                               </button>                                
                             </td>
                              <td>                                
                             </td>
@@ -754,48 +685,37 @@ $cat_edoCertificacion = $defuncion->cat_edos_cert();
                 <table  class="table table-condensed" border="0" align="center">
                         <tr>
                             <td>
-                                <label>Nombre(s)*</label><br>
+                                <input id="nombres_ins" type="text" class="form-control"  onkeypress="return soloLetras(event)" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">                                
+                                <div class="labelForm"><strong>*</strong>Nombre(s)</div>
                             </td>
-                            <td>
-                            <input id="nombres_ins" type="text" class="form-control"  onkeypress="return soloLetras(event)" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">                                
-                            </td>
-                            <td> <label>Primer apellido*</label><br> </td>
                             <td><input id="primer_apellido_ins" type="text" class="form-control"  onkeypress="return soloLetras(event)" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">                                
-                             </td>
-                            <td><label>Segundo apellido</label><br> </td>
+                                <div class="labelForm"><strong>*</strong>Primer apellido</div>
+                            </td>
                             <td><input id="segundo_apellido_ins" type="text" class="form-control"  onkeypress="return soloLetras(event)" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">                                
-                            </td>
-                        </tr>                        
-                         <tr>
-                            <td>
-                                <label>Sexo</label><br>
+                                <div class="labelForm">Segundo apellido</div>
                             </td>
                             <td>
-                           <div  class="ui-widget">
-                            <select style="width: 200px" id="sexo_ins" class="form-control">
-                                  <option value="0">========</option>
-                                  <?php
-                                  foreach ($cat_sexo as $item) {
-                                      ?>
-                                    <option value="<?php echo $item['0'] ?>" <?php if($item[0]=='223') echo "selected"; ?>><?php echo $item[2]; ?></option>
-                                      <?php
-                                  }
-                                  ?>
-                            </select>
-                            </div>                                  
+                                <div  class="ui-widget">
+                                 <select style="width: 200px" id="sexo_ins" class="form-control">
+                                       <option value="0">========</option>
+                                       <?php
+                                       foreach ($cat_sexo as $item) {
+                                           ?>
+                                         <option value="<?php echo $item['0'] ?>" <?php if($item[0]=='223') echo "selected"; ?>><?php echo $item[2]; ?></option>
+                                           <?php
+                                       }
+                                       ?>
+                                 </select>
+                                 </div>
+                                <div class="labelForm">Sexo</div>
                             </td>
-                            <td> </td>
-                            <td> </td>
-                        </tr>
+                        </tr> 
                         <tr>
                             <td>
-                                <label>Fecha de Nacimiento*</label><br>
+                                <input id="fechaNac_ins" onblur="validarFechas(this.value, 'fechaNac_ins')" onKeyUp = "this.value=formateafecha(this.value, 'fechaNac_ins');" class="form-control" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01])/(0[1-9]|1[012])/[0-9]{4}" placeholder="DD/MM/YYYY" type="text">
+                                <div class="labelForm"><strong>*</strong>Fecha de Nacimiento</div> 
                             </td>
                             <td>
-                                <input id="fechaNac_ins" onblur="validarFechas(this.value, 'fechaNac_ins')" onKeyUp = "this.value=formateafecha(this.value, 'fechaNac_ins');" class="form-control" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01])/(0[1-9]|1[012])/[0-9]{4}" placeholder="DD/MM/YYYY" type="text">
-                             </td>
-                            <td><label>Edad*</label><br> </td>
-                            <td width="30%" align="center">
                                  <div  class="ui-widget">
                             <input id="edad_ins" maxlength="3" type="text" size="5" class="validaNumeros" onkeypress="return validarSoloNumeros(event)">
                                                           
@@ -809,28 +729,20 @@ $cat_edoCertificacion = $defuncion->cat_edos_cert();
                                   <option value="Segundos">Segundos</option>
                                 </select>
                                 </div>
+                                <div class="labelForm"><strong>*</strong>Edad</div> 
                             </td>
-                            <td align="center"> <input id="masEdadIns" type="checkbox" onchange="mostrarMasEdadIns()"> Otra</td>
-                            <td><input id="otraEdadIns" style="display: none; text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control"> </td>
+                            <td> <input id="masEdadIns" type="checkbox" onchange="mostrarMasEdadIns()"> Otra
+                                 <input id="otraEdadIns" style="display: none; text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control">
+                            </td>
+                            <td> </td>
                         </tr>  
                       <tr>
                             <td>
-                                <label>Fecha de Defuncion*</label><br>
-                            </td>
-                            <td>
                                 <input id="fecha_defuncion_ins" onblur="validarFechas(this.value, 'fecha_defuncion_ins')" onKeyUp = "this.value=formateafecha(this.value, 'fecha_defuncion_ins');" class="form-control" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01])/(0[1-9]|1[012])/[0-9]{4}" placeholder="DD/MM/YYYY" type="text">
-                            </td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
-                      </tr>
-                      <tr>
-                            <td>
-                                <label>Compareciente(s)*</label><br>
+                                <div class="labelForm"><strong>*</strong>Fecha de Defunción</div>
                             </td>
                             <td>
-                            <div  class="ui-widget">
+                               <div  class="ui-widget">
                                  <select style="width: 200px" id="compareciente_ins">
                                     <?php
                                     foreach ($cat_comparece as $item) {
@@ -840,11 +752,9 @@ $cat_edoCertificacion = $defuncion->cat_edos_cert();
                                     }
                                     ?>                                       
                                  </select>
-                                 </div>                                
+                                 </div> 
+                                <div class="labelForm"><strong>*</strong>Compareciente(s)</div>
                             </td>
-                            <td> </td>
-                            <td> </td>
-                            <td><label>Pa&Iacute;s de Fallecimiento*</label><br> </td>
                             <td> <div  class="ui-widget">
                                 <select style="width: 200px" id="ID_PAIS_INS" class="form-control">
                               <option value="0">========</option>
@@ -856,37 +766,31 @@ $cat_edoCertificacion = $defuncion->cat_edos_cert();
                                   }
                                   ?>
                                 <option value="00">OTRO</option>
-                        </select></div>
-                            </td>                            
-                      </tr>
-                       <tr>
-                           <td colspan="6" align="center">
-                                <label>Transcripcion</label><br>
-                                <label>(MAX 8000 caracteres)</label><br>
-                            </td>                            
+                             </select></div>
+                              <div class="labelForm"><strong>*</strong>Pa&Iacute;s de Fallecimiento</div>  
+                            </td> 
+                            <td> </td>
                       </tr>
                       <tr>
-                           <td colspan="6" align="center">
-                                <textarea maxlength="8000" class="form-control" rows="15" cols="100" id="transcripcion"  style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
-                            </td>                            
+                           <td colspan="4" align="center">
+                               <div class="labelForm">Transcripcion <br> (MAX 8000 caracteres)</div> 
+                               <textarea maxlength="8000" class="form-control" rows="15" cols="100" id="transcripcion"  style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
+                           </td>                            
                       </tr>
                       <tr>
-                           <td colspan="6" align="center">
-                               <label>NOTAS:</label><br>
+                           <td colspan="4" align="center">
                                 <textarea class="form-control" rows="2" cols="100" id="NOTAS"  style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
-                            </td>                            
+                                <div class="labelForm">NOTAS:</div> 
+                           </td>                            
                       </tr>
                       <tr>
-                             <td colspan="6" align="center">
-                                <label>Anotaciones Marginales</label><br>
+                             <td colspan="4" align="center">
                                 <textarea class="form-control" rows="2" cols="100" id="notaMarginalIns"  style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
-                            </td>
+                                <div class="labelForm">Anotaciones Marginales</div> 
+                             </td>
                         </tr>
                       <tr>
-                          <td colspan="3" align="right">
-                               <label>Estado de la Certificación</label><br>                                
-                            </td>  
-                           <td colspan="3" align="left">
+                          <td colspan="4" align="left">
                                 <div  class="ui-widget">
                                <select style="width: 200px" id="estado_certificado_ins">
                                     <?php
@@ -897,17 +801,15 @@ $cat_edoCertificacion = $defuncion->cat_edos_cert();
                                         }
                                         ?>
                                 </select>
-                               </div>  
+                               </div>
+                               <div class="labelForm">Estado de la Certificación</div> 
                             </td>                            
                       </tr>
                       <tr>
-                            <td colspan="6" align="center"><br> 
-                                <button type="button" id="grabar_defuncion_ins" class="btn btn-success btn-lg">
-                                  <span class="glyphicon glyphicon-ok"></span> Grabar
-                               </button>
-                                <button type="button" id="cancelar_ins" class="btn btn-danger btn-lg">
-                                   <span class="glyphicon glyphicon-remove"></span> Cancelar
-                                </button>
+                            <td colspan="4" align="right"><br> 
+                               <button type="button" id="grabar_defuncion_ins" class="btn btn-primary">
+                                  <span class="glyphicon glyphicon-floppy-open"></span> Grabar
+                               </button>                                
                             </td>
                              <td>                                
                             </td>
@@ -1177,7 +1079,7 @@ $( document ).ready(function() {
         var finadoPadre=$("#finadoPadre").is(':checked') ? 'SI' : 'NO';
         var finadoMadre=$("#finadoMadre").is(':checked') ? 'SI' : 'NO';
         var otraEdad=$("#masEdad").is(':checked') ? $("#otraEdad").val() : '';
-            
+        
       $.ajax({
             type: "POST",
             url: "consultas_defunciones.php",
@@ -1231,7 +1133,7 @@ $( document ).ready(function() {
                 nacionalidad_madre: $("#nacionalidad_madre").val(),
                 fechaDefuncion: $("#fechaDefuncion").val(),
                 hrDefuncion: $("#hrDefuncion").val(),
-                minDefuncion: $("#minDefuncion").val(),
+                //minDefuncion: $("#minDefuncion").val(),
                 causa: $("#causa").val(),
                 lugar: $("#lugar").val(),
                 noCertificado: $("#noCertificado").val(),

@@ -1,0 +1,64 @@
+fieldset {
+	border: none;
+	padding:0px;
+	margin:0px;
+}
+::-webkit-input-placeholder, ::-moz-placeholder, ::-ms-input-placeholder, input:-moz-placeholder {
+color:#999;
+font-weight:bold;
+font-size:14px
+}
+.labelForm {
+	cursor: default;
+	border: 1px solid #EEE;
+        
+
+	float: left;
+	background-color: #EEE;
+	color: #080808;
+        font-weight:bold; 
+	padding: 3px;
+	font-size: 14px;
+	margin-top:-2px;
+	margin-bottom: 4px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px
+}
+.inputForm {
+	border-bottom-right-radius: 5px;
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px
+}
+.boxForm {
+	border: #333 solid 2px;
+	margin-left:-3px !important;
+	border-radius: 10px;
+	border-bottom-left-radius:0px;
+	border-bottom-right-radius:0px;
+}
+.nextStep, .backStep {
+	cursor: pointer;
+	font-weight:bold;
+	text-decoration:none;
+	border: #333 solid 2px;
+	border-top:none;
+	float: right;
+	background-color: #CCC;
+	color: #666;
+	padding: 3px;
+	font-size: 18px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px
+	}
+.backStep{
+	margin-left:-3px !important;
+	float:left !important;
+	}
+.nextStep:hover {
+	background-color: #666;
+	color: #FFF;
+	}
+.backStep:hover{
+	background-color: #666;
+	color: #FFF;
+	}

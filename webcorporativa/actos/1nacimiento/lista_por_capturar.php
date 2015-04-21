@@ -1,5 +1,5 @@
 <?php
-ECHO "lISTA DE lIBROS A CAPTURAR POR EL CAPTURISTA";
+ECHO "brenda";
 /* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
